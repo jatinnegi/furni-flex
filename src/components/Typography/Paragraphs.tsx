@@ -1,7 +1,16 @@
 import { FC, PropsWithChildren } from "react";
+import clsx from "clsx";
 
-const Paragraph2: FC<PropsWithChildren> = ({ children }) => (
-  <p className="text-[#5a5958] text-sm">{children}</p>
+interface ParagraphProps extends PropsWithChildren {
+  className?: string;
+}
+
+const Paragraph1: FC<ParagraphProps> = ({ children, className }) => (
+  <p className={clsx("text-base", className)}>{children}</p>
 );
 
-export { Paragraph2 };
+const Paragraph2: FC<ParagraphProps> = ({ children, className }) => (
+  <p className={clsx("text-sm", className)}>{children}</p>
+);
+
+export { Paragraph1, Paragraph2 };

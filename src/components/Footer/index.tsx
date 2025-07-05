@@ -92,10 +92,12 @@ const linksData: LinkCategoryProps[] = [
 const Footer = () => {
   return (
     <footer className="w-full bg-[#f7f2ef] py-8 md:py-14">
-      <div className="max-w-[1400px] w-11/12 mx-auto flex flex-col md:flex-row justify-between items-start gap-10 md:gap-32">
-        <div className="flex flex-col gap-3 md:gap-4 w-full md:w-4/12">
+      <div className="max-w-[1400px] w-11/12 mx-auto flex flex-col lg:flex-row justify-between items-start gap-10 md:gap-8 lg:gap-32">
+        <div className="flex flex-col gap-3 md:gap-4 w-full md:w-8/12 lg:w-4/12">
           <Heading3>Subscribe to get 10% OFF</Heading3>
-          <Paragraph2>Subscribe for store updates and discounts.</Paragraph2>
+          <Paragraph2 className="text-[#5A5958]">
+            Subscribe for store updates and discounts.
+          </Paragraph2>
           <form className="h-14 w-full bg-white rounded-sm flex overflow-hidden">
             <input
               type="text"
@@ -141,20 +143,36 @@ const Footer = () => {
           <div className="flex flex-col gap-4">
             <Heading4>Get in touch</Heading4>
             <div className="flex flex-col gap-2">
-              <Paragraph2>1501 Main St, Ste 50</Paragraph2>
-              <Paragraph2>Tewksbury MA 01876</Paragraph2>
-              <Paragraph2>email@example.com</Paragraph2>
-              <Paragraph2>+1 526 220 0459</Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                1501 Main St, Ste 50
+              </Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                Tewksbury MA 01876
+              </Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                email@example.com
+              </Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                +1 526 220 0459
+              </Paragraph2>
             </div>
             <div className="flex flex-col gap-2">
-              <Paragraph2>Mon-Fri: 8:00 - 21:00</Paragraph2>
-              <Paragraph2>Sat: 8:00 - 16:00</Paragraph2>
-              <Paragraph2>Sun: 8:00 - 12:00</Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                Mon-Fri: 8:00 - 21:00
+              </Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                Sat: 8:00 - 16:00
+              </Paragraph2>
+              <Paragraph2 className="text-[#5A5958]">
+                Sun: 8:00 - 12:00
+              </Paragraph2>
             </div>
           </div>
           <div className="flex flex-col gap-4">
             <Heading4>About</Heading4>
-            <Paragraph2>Founded by developers in 2025, FurniFlex®</Paragraph2>
+            <Paragraph2 className="text-[#5A5958]">
+              Founded by developers in 2025, FurniFlex®
+            </Paragraph2>
           </div>
         </div>
       </div>
