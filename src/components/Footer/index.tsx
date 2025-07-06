@@ -91,7 +91,7 @@ const linksData: LinkCategoryProps[] = [
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#f7f2ef] py-8 md:py-14">
+    <footer className="w-full bg-[#F7F2EF] py-8 md:py-14">
       <div className="max-w-[1400px] w-11/12 mx-auto flex flex-col lg:flex-row justify-between items-start gap-10 md:gap-8 lg:gap-32">
         <div className="flex flex-col gap-3 md:gap-4 w-full md:w-8/12 lg:w-4/12">
           <Heading3>Subscribe to get 10% OFF</Heading3>
