@@ -1,5 +1,4 @@
 import { FC, useState, useRef, useEffect } from "react";
-import clsx from "clsx";
 import Link from "next/link";
 
 import CategoryGraphicLink from "./CategoryGraphicLink";
