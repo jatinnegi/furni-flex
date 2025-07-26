@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
@@ -30,15 +30,31 @@ const categoriesMenu: { id: number; name: string }[] = [
 const navbarContainerWidth: string = "w-11/12 max-w-[1450px] mx-auto";
 
 const Navbar = () => {
+  const activeCategoryMenuTimeout = useRef<ReturnType<
+    typeof setTimeout
+  > | null>(null);
   const [activeCategoryMenu, setActiveCategoryMenu] = useState<number | null>(
     null
   );
 
   const handleMouseEnterCategory = (id: number) => {
-    setActiveCategoryMenu(id);
+    if (activeCategoryMenuTimeout.current) {
+      clearTimeout(activeCategoryMenuTimeout.current);
+      activeCategoryMenuTimeout.current = null;
+    }
+
+    activeCategoryMenuTimeout.current = setTimeout(() => {
+      setActiveCategoryMenu(id);
+      activeCategoryMenuTimeout.current = null;
+    }, 150);
   };
 
   const handleMouseLeaveCategory = () => {
+    if (activeCategoryMenuTimeout.current) {
+      clearTimeout(activeCategoryMenuTimeout.current);
+      activeCategoryMenuTimeout.current = null;
+    }
+
     setActiveCategoryMenu(null);
   };
 

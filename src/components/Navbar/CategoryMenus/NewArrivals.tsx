@@ -53,7 +53,7 @@ const NewArrivals: FC<Props> = ({ display }) => {
   }
 
   return (
-    <div className="flex items-start justify-center gap-10 w-full h-full  py-8">
+    <div className="flex items-start justify-center gap-10 w-full h-full py-8">
       <ul className="flex flex-col gap-4">
         {links.map((link) => (
           <li key={link.id}>
