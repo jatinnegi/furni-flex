@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { Fraunces } from "next/font/google";
+import StoreProvider from "@/lib/store-provider";
+import ProgressBarProvider from "@/components/Navigation/ProgressBarProvider";
 import Navbar from "@/components/Navbar";
+import CartSummary from "@/components/CartSummary";
 import Footer from "@/components/Footer";
 import "@/styles/globals.css";
 
-const fraunces = Fraunces({
+const inter = Fraunces({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-open-sans",
@@ -22,10 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.className} flex flex-col min-h-screen`}>
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+      <body className={`${inter.className} flex flex-col min-h-screen`}>
+        <ProgressBarProvider>
+          <StoreProvider>
+            <Navbar />
+            <div className="flex-1">
+              {children}
+              <CartSummary />
+            </div>
+            <Footer />
+          </StoreProvider>
+        </ProgressBarProvider>
       </body>
     </html>
   );

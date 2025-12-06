@@ -1,5 +1,13 @@
 "use client";
 import { useRef, useState } from "react";
+import { RootState } from "@/lib/store";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  cartMenuOpen,
+  emptyCartMenuOpen,
+  emptyCartMenuClose,
+} from "@/lib/features/cart/cartSlice";
+
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
@@ -12,6 +20,7 @@ import SearchIcon from "@/components/Icons/Search";
 import UserIcon from "@/components/Icons/User";
 import CartIcon from "@/components/Icons/Cart";
 import WishlistIcon from "@/components/Icons/Wishlist";
+import CloseIcon from "@/components/Icons/Close";
 
 const categoriesMenu: { id: number; name: string }[] = [
   { id: 1, name: "Best of sale: 20% sitewide" },
@@ -30,9 +39,15 @@ const categoriesMenu: { id: number; name: string }[] = [
 const navbarContainerWidth: string = "w-11/12 max-w-[1450px] mx-auto";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
+  const { items, displayEmptyCartView } = useSelector(
+    (state: RootState) => state.cart
+  );
+
   const activeCategoryMenuTimeout = useRef<ReturnType<
     typeof setTimeout
   > | null>(null);
+
   const [activeCategoryMenu, setActiveCategoryMenu] = useState<number | null>(
     null
   );
@@ -83,7 +98,9 @@ const Navbar = () => {
                   objectFit="contain"
                 />
               </div>
-              <p>FurniFlex</p>
+              <p className="text-[var(--color-primary-darker)] text-sm md:text-base">
+                FurniFlex
+              </p>
             </Link>
           </div>
           <form className="flex-1 h-3/5 w-full rounded-sm hidden md:flex bg-[#F3F3F3] overflow-hidden">
@@ -99,16 +116,81 @@ const Navbar = () => {
               <SearchIcon />
             </button>
           </form>
-          <ul className="h-full list-none flex items-center justify-end gap-6 lg:gap-8">
-            <Link href="/auth" title="Your account">
-              <UserIcon />
-            </Link>
-            <Link href="/wishlist" title="Your wishlist">
-              <WishlistIcon />
-            </Link>
-            <Link href="/cart" title="Your cart">
-              <CartIcon />
-            </Link>
+          <ul className="h-full list-none flex items-center justify-end gap-3 md:gap-6 lg:gap-8">
+            <li>
+              <Link href="/auth" title="Your account">
+                <UserIcon />
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/wishlist"
+                title="Your wishlist"
+                className="block h-5 w-5"
+              >
+                <WishlistIcon />
+              </Link>
+            </li>
+            <li className="relative flex items-center">
+              <button
+                type="button"
+                title="Your cart"
+                className="h-5 w-5 cursor-pointer"
+                onClick={(e: React.MouseEvent) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+
+                  if (items.length > 0) {
+                    dispatch(cartMenuOpen());
+                  } else {
+                    dispatch(emptyCartMenuOpen());
+                  }
+                }}
+              >
+                <CartIcon />
+              </button>
+              <p
+                className={clsx(
+                  "absolute -top-2.5 -right-3 text-[10px] font-light bg-[var(--color-primary-darker)] text-[var(--color-on-text)] h-4 w-4 rounded-full flex items-center justify-center",
+                  items.length === 0 ? "hidden" : "block"
+                )}
+              >
+                {items.length}
+              </p>
+              <section
+                className={clsx(
+                  displayEmptyCartView
+                    ? "opacity-100 pointer-events-auto"
+                    : "opacity-0 pointer-events-none",
+                  "absolute bottom-0 right-0 translate-y-full bg-white rounded-xs border-[0.5px] border-solid border-gray-200 w-96 shadow-lg py-6 px-8 flex flex-col gap-2 transition-all ease-in duration-50"
+                )}
+                onClick={(e: React.MouseEvent<HTMLElement>) => {
+                  e.stopPropagation();
+                }}
+              >
+                <div className="flex justify-between items-center">
+                  <h4 className="text-2xl">Your Cart</h4>
+                  <button
+                    type="button"
+                    className="text-gray-500 h-5 w-5 cursor-pointer"
+                    onClick={() => {
+                      dispatch(emptyCartMenuClose());
+                    }}
+                  >
+                    <CloseIcon />
+                  </button>
+                </div>
+                <p className="text-base font-light mt-2">
+                  You don't have anything in your cart yet!
+                </p>
+                <button
+                  type="button"
+                  className="uppercase bg-black text-white py-2.5 text-xs tracking-widest font-medium mt-2 cursor-pointer"
+                >
+                  Shop All
+                </button>
+              </section>
+            </li>
           </ul>
         </div>
         <section
@@ -120,7 +202,7 @@ const Navbar = () => {
           <ul
             className={clsx(
               navbarContainerWidth,
-              "md:w-full lg:w-11/12 flex md:justify-around lg:justify-between list-none lg:gap-2"
+              "md:w-full lg:w-11/12 xl:w-full flex md:justify-around lg:justify-between list-none lg:gap-2"
             )}
           >
             {categoriesMenu.map((categoryMenu) => (
@@ -131,7 +213,9 @@ const Navbar = () => {
                   handleMouseEnterCategory(categoryMenu.id);
                 }}
                 className={clsx(
-                  categoryMenu.id === 1 ? "text-[#7F534B]" : "text-black",
+                  categoryMenu.id === 1
+                    ? "text-[var(--color-primary)] font-normal"
+                    : "text-[var(--color-text)] font-light",
                   "py-4 text-[0.5rem] lg:text-[0.6rem] xl:text-[0.75rem] uppercase hover:underline"
                 )}
               >

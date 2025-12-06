@@ -58,7 +58,7 @@ const NewArrivals: FC<Props> = ({ display }) => {
           <li key={link.id}>
             <Link
               href={link.href}
-              className="font-[350] text-sm hover:underline"
+              className="font-light text-sm hover:underline"
             >
               {link.name}
             </Link>
