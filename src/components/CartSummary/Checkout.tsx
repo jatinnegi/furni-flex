@@ -24,7 +24,7 @@ const Checkout: FC<Props> = ({ subTotal }) => {
       </div>
       <Link
         href="/checkout"
-        className="bg-[var(--color-on-primary)] text-[var(--color-text)] hover:bg-[var(--color-primary-darker)] hover:text-[var(--color-on-text)]
+        className="bg-[var(--color-on-primary)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-[var(--color-on-text)]
         transition-all ease-in duration-150 py-3 text-center rounded-sm"
         onClick={() => {
           dispatch(cartMenuClose());

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function () {
   return (
-    <ul className="text-xs font-light flex items-center gap-1">
+    <ul className="text-xs md:text-sm font-light flex items-center gap-1">
       <li>
         <Link href="/">Home</Link>
       </li>

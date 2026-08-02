@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  /* --color-primary: #7f534b; */
-  --color-primary: #1e1c1c;
+  --color-primary: #191919;
+  /* --color-primary: #111e2c; */
   --color-on-primary: #f3f3f3;
 
   --color-primary-darker: #1e1c1c;
@@ -10,6 +10,7 @@
 
   --color-text: #141414;
   --color-on-text: #f3f3f3;
+  --color-line-break: #d1d5dc80;
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 
 #nprogress .bar {
   /* background: var(--color-primary); */
-  background: #385678;
+  background: #111e2c;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -37,7 +38,9 @@ body {
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px #38567890, 0 0 5px #38567890;
+  box-shadow:
+    0 0 10px #111e2c90,
+    0 0 5px #111e2c90;
   opacity: 1;
   transform: rotate(3deg) translate(0px, -4px);
 }

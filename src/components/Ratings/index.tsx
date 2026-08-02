@@ -19,7 +19,7 @@ const Ratings: FC<Props> = ({
   );
 
   return (
-    <div className="my-1 flex gap-2 items-center">
+    <div className="relative my-1 flex gap-2 items-center -z-10">
       <div className="flex gap-0.5">{ReviewStars}</div>
       {totalRatings ? (
         <p className="text-light text-sm">({totalRatings})</p>

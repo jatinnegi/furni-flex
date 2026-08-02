@@ -1,3 +1,8 @@
+interface Coordinates {
+  x: number;
+  y: number;
+}
+
 interface ItemProps {
   productId: number;
   productName: string;

@@ -9,23 +9,34 @@ interface DisplayProps {
   shippingReturns: boolean;
 }
 
-type DimensionProps = [label: string, value: string];
+type ProductInfoProps = [label: string, value: string];
 
-const dimensions: DimensionProps[] = [
+const details: ProductInfoProps[] = [
+  ["Frame material", ""],
+  ["Filling", ""],
+  ["Upholstery material", ""],
+  ["Back design", ""],
+  ["Max bearing weight", ""],
+];
+
+const dimensions: ProductInfoProps[] = [
   ["Overall", '33.75"D x 88.5"W x 30.6"H'],
   ["Weight", "42 Kgs"],
-  ["Seat Depth", '21"'],
-  ["Floor to Top of Cushion", '19"'],
-  ["Seat Cushion Width", '25"'],
-  ["Thickness of Back Pillow", '8"'],
-  ["Arm Width", '4.5"'],
+  ["Seat depth", '21"'],
+  ["Floor to top of cushion", '19"'],
+  ["Seat cushion width", '25"'],
+  ["Thickness of back pillow", '8"'],
+  ["Arm width", '4.5"'],
 ];
+
+const buttonClasses: string =
+  "flex justify-between items-center w-full cursor-pointer md:text-lg";
 
 const ProductInfo = () => {
   const [displayData, setDisplayData] = useState<DisplayProps>({
-    details: false,
-    dimensions: false,
-    shippingReturns: false,
+    details: true,
+    dimensions: true,
+    shippingReturns: true,
   });
 
   return (
@@ -33,7 +44,7 @@ const ProductInfo = () => {
       <article className="border-b-[1px] border-solid border-gray-200 py-3 w-full flex flex-col gap-4">
         <button
           type="button"
-          className="flex justify-between items-center w-full cursor-pointer"
+          className={buttonClasses}
           onClick={() => {
             setDisplayData({ ...displayData, details: !displayData.details });
           }}
@@ -69,31 +80,28 @@ const ProductInfo = () => {
         </button>
         <ul
           className={clsx(
-            displayData.details ? "block" : "hidden",
-            "font-light flex flex-col gap-2 text-sm"
+            displayData.details ? "flex" : "hidden",
+            "font-light flex-col text-sm md:text-base"
           )}
         >
-          <li>
-            <span>Frame Material:</span>
-          </li>
-          <li>
-            <span>Filling:</span>
-          </li>
-          <li>
-            <span>Upholstery Material:</span>
-          </li>
-          <li>
-            <span>Back Design:</span>
-          </li>
-          <li>
-            <span>Max Bearing Weight:</span>
-          </li>
+          {details.map((item: ProductInfoProps, idx: number) => (
+            <li
+              key={item[0]}
+              className={clsx(
+                idx % 2 ? "bg-white" : "bg-gray-100",
+                "w-full p-2 flex justify-between"
+              )}
+            >
+              <span>{item[0]}</span>
+              <span>{item[1]}</span>
+            </li>
+          ))}
         </ul>
       </article>
       <article className="border-b-[1px] border-solid border-gray-200 py-3 w-full flex flex-col gap-4">
         <button
           type="button"
-          className="flex justify-between items-center w-full cursor-pointer"
+          className={buttonClasses}
           onClick={() => {
             setDisplayData({
               ...displayData,
@@ -136,7 +144,10 @@ const ProductInfo = () => {
             "flex-col gap-2 w-full"
           )}
         >
-          <div className="relative w-full" style={{ aspectRatio: "1.5/1" }}>
+          <div
+            className="relative w-full -z-10"
+            style={{ aspectRatio: "1.5/1" }}
+          >
             <Image
               src="/image/products/helm-sofa/dimensions.webp"
               alt="helm-sofa"
@@ -145,8 +156,8 @@ const ProductInfo = () => {
               loading="lazy"
             />
           </div>
-          <ul className="font-light flex flex-col text-sm">
-            {dimensions.map((item: DimensionProps, idx: number) => (
+          <ul className="font-light flex flex-col text-sm md:text-base">
+            {dimensions.map((item: ProductInfoProps, idx: number) => (
               <li
                 key={item[0]}
                 className={clsx(
@@ -164,7 +175,7 @@ const ProductInfo = () => {
       <article className="border-b-[1px] border-solid border-gray-200 py-3 w-full flex flex-col gap-4">
         <button
           type="button"
-          className="flex justify-between items-center w-full cursor-pointer"
+          className={buttonClasses}
           onClick={() => {
             setDisplayData({
               ...displayData,
@@ -204,14 +215,14 @@ const ProductInfo = () => {
         <ul
           className={clsx(
             displayData.shippingReturns ? "block" : "hidden",
-            "font-light flex flex-col gap-4 text-sm"
+            "font-light flex flex-col gap-4 text-sm md:text-base"
           )}
         >
           <li className="flex gap-4">
             <svg
-              className="mt-0.5 h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 28 28"
+              className="h-5 md:h-6 w-5 md:w-6"
             >
               <path
                 fill="#141414"
@@ -219,7 +230,9 @@ const ProductInfo = () => {
               ></path>
             </svg>
             <div className="flex-1 flex flex-col gap-1">
-              <p className="font-normal text-sm">Shipping & Delivery</p>
+              <p className="font-normal text-sm md:text-base">
+                Shipping & Delivery
+              </p>
               <p>
                 Enjoy free shipping on all orders. Items ship immediately upon
                 availablity, with delivery in 3-5 business days
@@ -233,7 +246,7 @@ const ProductInfo = () => {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="h-5 w-5"
+              className="h-5 md:h-6 w-5 md:w-6"
             >
               <path
                 strokeLinecap="round"
@@ -242,7 +255,9 @@ const ProductInfo = () => {
               />
             </svg>
             <div className="flex-1 flex flex-col gap-1">
-              <p className="font-normal text-sm">60-Day Easy Returns</p>
+              <p className="font-normal text-sm md:text-base">
+                60-Day Easy Returns
+              </p>
               <p>
                 Not satisifed? Return eligible items in new, unused condition
                 within 60 days for a full refund or exchange.

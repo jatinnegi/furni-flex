@@ -33,7 +33,7 @@ const sections = [
 
 export default function () {
   return (
-    <footer className="flex flex-col font-light gap-4 mt-5 md:mt-24 mb-2 md:mb-4 pt-12 border-t-[1px] border-solid border-gray-300/50">
+    <footer className="flex flex-col font-light gap-4 mt-5 md:mt-24 mb-2 md:mb-4 pt-6 md:pt-12 border-t-[1px] border-solid border-gray-300/50">
       <section className="w-11/12 max-w-[1650px] mx-auto flex flex-col md:flex-row gap-8 md:gap-16 lg:gap-20 xl:gap-64 md:justify-between">
         <header className="w-full md:w-2/5 lg:w-1/3 xl:w-1/4">
           <h2 className="text-3xl lg:text-5xl xl:text-7xl font-normal">

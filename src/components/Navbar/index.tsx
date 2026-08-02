@@ -74,7 +74,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 left-0 w-full z-10">
+    <header className="sticky top-0 left-0 w-full z-50">
       <nav className="bg-white shadow-sm md:shadow-xs">
         <div
           className={clsx(
@@ -151,7 +151,7 @@ const Navbar = () => {
               </button>
               <p
                 className={clsx(
-                  "absolute -top-2.5 -right-3 text-[10px] font-light bg-[var(--color-primary-darker)] text-[var(--color-on-text)] h-4 w-4 rounded-full flex items-center justify-center",
+                  "absolute -top-2.5 -right-3 text-[10px] font-light bg-[var(--color-primary)] text-[var(--color-on-text)] h-4 w-4 rounded-full flex items-center justify-center",
                   items.length === 0 ? "hidden" : "block"
                 )}
               >
